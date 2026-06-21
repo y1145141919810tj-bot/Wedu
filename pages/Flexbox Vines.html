@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="i18n.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#635d15",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#1f5467",
+                        "error": "#b31b25",
+                        "outline-variant": "#a7aeb1",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "surface": "#f1f8fa",
+                        "on-tertiary-fixed": "#014154",
+                        "inverse-on-surface": "#979ea0",
+                        "surface-bright": "#f1f8fa",
+                        "on-error": "#ffefee",
+                        "primary-container": "#89f0cb",
+                        "error-dim": "#9f0519",
+                        "surface-dim": "#cbd6da",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "secondary-dim": "#575107",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "primary-fixed-dim": "#7be2bd",
+                        "on-secondary": "#fff5a0",
+                        "surface-container-low": "#eaf2f5",
+                        "inverse-primary": "#98ffd9",
+                        "primary": "#00684f",
+                        "surface-container-highest": "#d4dfe2",
+                        "tertiary-fixed": "#b2e4fb",
+                        "tertiary-dim": "#215669",
+                        "surface-container": "#e1eaec",
+                        "on-primary-container": "#005a44",
+                        "on-tertiary": "#e4f5ff",
+                        "inverse-surface": "#080f11",
+                        "secondary-fixed": "#efe58f",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "outline": "#71787a",
+                        "on-primary-fixed": "#004533",
+                        "tertiary": "#2f6275",
+                        "secondary-container": "#efe58f",
+                        "surface-container-high": "#dae4e7",
+                        "on-secondary-container": "#59530a",
+                        "on-primary": "#c6ffe7",
+                        "on-secondary-fixed": "#464000",
+                        "error-container": "#fb5151",
+                        "surface-tint": "#00684f",
+                        "tertiary-container": "#b2e4fb",
+                        "background": "#f1f8fa",
+                        "on-background": "#293032",
+                        "surface-variant": "#d4dfe2",
+                        "on-surface-variant": "#565d5f",
+                        "on-surface": "#293032",
+                        "primary-dim": "#005b45"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(41, 48, 50, 0.2);
+        }
+
+        .pixel-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(41, 48, 50, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .pixel-shadow-active:active {
+            box-shadow: 2px 2px 0px 0px rgba(41, 48, 50, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container">
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')" class="p-2 bg-white border-2 border-black">中文</button>
+        <button onclick="switchLanguage('en')" class="p-2 bg-white border-2 border-black">EN</button>
+    </div>
+
+    <!-- TopNavBar Component -->
+
+    <div id="nav-placeholder"></div>
+
+    <!-- Main Content Canvas -->
+    <main class="max-w-[1000px] mx-auto px-6 py-12 md:py-20">
+        <!-- Breadcrumbs / Meta -->
+        <div class="flex items-center gap-2 mb-8 font-label text-sm font-medium text-tertiary">
+            <span class="material-symbols-outlined text-sm text-on-surface">folder</span>
+            <a href="./map.html" class="text-on-surface-variant hover:text-primary">World Map</a>
+            <span class="material-symbols-outlined mx-2 text-sm" data-icon="chevron_right">chevron_right</span>
+            <a href="./CSS Forest.html" class="text-on-surface-variant hover:text-primary">CSS</a>
+            <span class="material-symbols-outlined mx-2 text-sm" data-icon="chevron_right">chevron_right</span>
+            <span class="text-on-surface hover:text-primary">Flexbox Vines</span>
+        </div>
+
+        <!-- Hero Header -->
+        <header class="mb-16">
+            <h1 data-i18n="hero_title_flex"
+                class="font-headline text-5xl md:text-7xl font-bold text-on-background mb-6 tracking-tight leading-tight">
+                Introduction to <span
+                    class="text-primary underline decoration-4 underline-offset-8 decoration-primary-container">CSS
+                    Flexbox</span>
+            </h1>
+            <p data-i18n="heroheader"
+                class="text-xl md:text-2xl text-on-surface-variant font-medium leading-relaxed max-w-3xl">
+                Master the art of one-dimensional layouts. Learn how to align items, distribute space, and build
+                responsive structures without the float-headaches of the past.
+            </p>
+        </header>
+        <!-- Concept Section: The Container -->
+        <section class="mb-12">
+            <div class="bg-surface-container-low p-8 border-l-8 border-primary mb-10">
+                <h2 class="font-headline text-2xl font-bold text-on-primary-container mb-4 flex items-center gap-3">
+                    <span class="material-symbols-outlined" text-primary>widgets</span>
+                    <span data-i18n="flex_container_title">
+                        The Flex Container
+                </h2>
+                <p data-i18n="flex_container_text" class="text-on-surface leading-loose mb-6">
+                    Everything begins with <code
+                        class="bg-primary-container px-2 font-bold text-on-primary-container">display: flex</code>. By
+                    applying this property to a parent element, all of its direct children automatically become "flex
+                    items," granting you granular control over their behavior along the primary and cross axes.
+                </p>
+
+                <!-- Bento Grid: Main Concepts -->
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+                    <!-- Concept Card 1 -->
+                    <div class="bg-surface-container-lowest border-4 border-outline p-8 flex flex-col gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container flex items-center justify-center border-2 border-outline">
+                            <span class="material-symbols-outlined text-on-secondary-container">unfold_more</span>
+                        </div>
+                        <h3 data-i18n="subtitle1" class="font-headline text-xl font-bold uppercase">
+                        </h3>
+                        <div data-i18n="flex_justify_text" class="text-on-surface-variant text-sm leading-relaxed">
+                        </div>
+                    </div>
+                    <!-- Concept Card 2 -->
+                    <div class="bg-surface-container-lowest border-4 border-outline p-8 flex flex-col gap-4">
+                        <div
+                            class="w-12 h-12 bg-tertiary-container flex items-center justify-center border-2 border-outline">
+                            <span class="material-symbols-outlined text-on-tertiary-container">swap_horiz</span>
+                        </div>
+                        <h3 data-i18n="subtitle2" class="font-headline text-xl font-bold uppercase">Cross Axis Control
+                        </h3>
+                        <div data-i18n="flex_align_text" class="text-on-surface-variant text-sm leading-relaxed">
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mt-20 pt-12 border-t-4 border-outline-variant/30">
+                    <section class="mb-20">
+                        <div class="bg-surface-container-high border-4 border-outline p-4 pixel-shadow relative">
+                            <div data-i18n="sandbox_title"
+                                class="absolute -top-4 right-4 bg-primary px-3 py-1 font-headline font-black text-sm text-on-primary border-2 border-outline z-10 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                                Live Sandbox
+                            </div>
+
+                            <div class="flex items-center mb-4 border-b-2 border-outline pb-2">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 bg-error-dim border border-outline"></div>
+                                    <div class="w-3 h-3 bg-secondary border border-outline"></div>
+                                    <div class="w-3 h-3 bg-primary border border-outline"></div>
+                                </div>
+                            </div>
+
+                            <div class="relative w-full h-64 border-4 border-outline bg-surface-container-lowest flex items-center p-4 gap-4 transition-all duration-300"
+                                id="flex-sandbox" style="justify-content: flex-start; align-items: center;">
+                                <div
+                                    class="pixel-box bg-[#89f0cb] border-4 border-[#00644c] text-[#004533] w-16 min-h-[4rem] flex items-center justify-center font-black text-xl shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+                                    1</div>
+                                <div
+                                    class="pixel-box bg-[#b2e4fb] border-4 border-[#1f5467] text-[#014154] w-16 min-h-[4rem] flex items-center justify-center font-black text-xl shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+                                    2</div>
+                                <div
+                                    class="pixel-box bg-[#efe58f] border-4 border-[#635d15] text-[#464000] w-16 min-h-[4rem] flex items-center justify-center font-black text-xl shadow-[4px_4px_0px_rgba(0,0,0,0.1)]">
+                                    3</div>
+                            </div>
+
+                            <div class="mt-6 flex flex-col gap-4 items-center justify-center">
+                                <div class="flex flex-wrap gap-3 items-center justify-center">
+                                    <span class="font-label text-xs font-bold uppercase text-outline mr-2"
+                                        data-i18n="sandbox_label_justify">justify-content:</span>
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 bg-primary text-on-primary border-2 border-outline font-headline text-sm font-bold active-pill transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'flex-start', this)">flex-start</button>
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'center', this)">center</button>
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'flex-end', this)">flex-end</button>
+                                </div>
+
+                                <div class="flex flex-wrap gap-2 justify-center">
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 w-36 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'space-between', this)">space-between</button>
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 w-36 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'space-around', this)">space-around</button>
+                                    <button
+                                        class="control-btn-justify px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all w-32"
+                                        onclick="updateFlex('justifyContent', 'space-evenly', this)">space-evenly</button>
+                                </div>
+
+                                <div
+                                    class="flex flex-wrap gap-3 items-center justify-center border-t border-outline pt-4 w-full">
+                                    <span class="font-label text-xs font-bold uppercase text-outline mr-2"
+                                        data-i18n="sandbox_label_align">align-items:</span>
+                                    <button
+                                        class="control-btn-align px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all"
+                                        onclick="updateFlex('alignItems', 'flex-start', this)">flex-start</button>
+                                    <button
+                                        class="control-btn-align px-4 py-1.5 bg-primary text-on-primary border-2 border-outline font-headline text-sm font-bold active-pill transition-all"
+                                        onclick="updateFlex('alignItems', 'center', this)">center</button>
+                                    <button
+                                        class="control-btn-align px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all"
+                                        onclick="updateFlex('alignItems', 'flex-end', this)">flex-end</button>
+                                    <button
+                                        class="control-btn-align px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all"
+                                        onclick="updateFlex('alignItems', 'stretch', this)">stretch</button>
+                                    <button
+                                        class="control-btn-align px-4 py-1.5 bg-surface-container-highest border-2 border-outline font-headline text-sm font-bold hover:bg-surface-container transition-all"
+                                        onclick="updateFlex('alignItems', 'baseline', this)">baseline</button>
+                                </div>
+                            </div>
+
+                            <div class="mt-8 bg-inverse-surface border-4 border-outline p-4 pixel-shadow relative">
+                                <div data-i18n="sandbox_live_css"
+                                    class="absolute -top-4 right-4 bg-primary px-3 py-1 font-label text-[10px] font-bold uppercase text-on-primary border-2 border-outline z-10">
+                                    Live CSS</div>
+                                <pre class="font-mono text-sm leading-tight mt-2 text-surface-container-lowest">
+<span class="text-primary-fixed">.container</span> {
+  <span class="text-secondary-fixed">display</span>: flex;
+  <span class="text-secondary-fixed">justify-content</span>: <span class="text-primary-fixed" id="code-justify">flex-start</span>;
+  <span class="text-secondary-fixed">align-items</span>: <span class="text-primary-fixed" id="code-align">center</span>;
+}</pre>
+                            </div>
+                        </div>
+                    </section>
+
+
+                    <!-- Next Steps -->
+                    <section class="mt-20 pt-12 border-t-4 border-outline-variant/30">
+                        <h2 data-i18n="next_steps_title"
+                            class="font-headline text-3xl font-bold mb-8 uppercase tracking-tight">
+                            Next Steps
+                        </h2>
+                        <div class="flex flex-col md:flex-row gap-6">
+                            <a class="flex-1 bg-surface-container-low hover:bg-primary-container p-6 border-4 border-outline transition-colors group"
+                                href="#">
+                                <span data-i18n="next_steps_tag1"
+                                    class="text-xs font-bold font-label text-outline mb-2 block uppercase">
+                                    Advanced Lesson
+                                </span>
+                                <h4 data-i18n="next_steps_h1"
+                                    class="font-headline text-xl font-bold group-hover:text-primary">
+                                    Mastering Flex-Grow &amp; Basis
+                                </h4>
+                                <span class="material-symbols-outlined mt-4 text-primary">arrow_forward</span>
+                            </a>
+
+                            <a class="flex-1 bg-surface-container-low hover:bg-tertiary-container p-6 border-4 border-outline transition-colors group"
+                                href="#">
+                                <span data-i18n="next_steps_tag2"
+                                    class="text-xs font-bold font-label text-outline mb-2 block uppercase">
+                                    Interactive Quiz
+                                </span>
+                                <h4 data-i18n="next_steps_h2"
+                                    class="font-headline text-xl font-bold group-hover:text-tertiary">
+                                    Flexbox Layout Challenge
+                                </h4>
+                                <span class="material-symbols-outlined mt-4 text-tertiary">quiz</span>
+                            </a>
+                        </div>
+                    </section>
+                </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+    
+    <script src="../components/main.js"></script>
+    <script>
+        // 1. 注入导航栏、页脚
+        async function inject(id, url) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                const target = document.getElementById(id);
+                if (target) target.innerHTML = html;
+            } catch (err) { }
+        }
+
+        // 2. 页面加载 + 自动修复按钮动画
+        async function loadComponents() {
+            await Promise.all([
+                inject('nav-placeholder', '../components/nav.html'),
+                inject('footer-placeholder', '../components/footer.html')
+            ]);
+
+            // ==============================================
+            // ✅ 核心：自动给 Start Learning 按钮加上动画
+            // ==============================================
+            const startBtn = document.querySelector('button[data-i18n="btn_start"]');
+            if (startBtn) {
+                // 自动加上缺失的过渡 + 动画类
+                startBtn.classList.add('transition-all', 'duration-75');
+            }
+
+            // 多语言
+            if (typeof updateLanguage === 'function') {
+                updateLanguage(localStorage.getItem('selectedLang') || 'en');
+            }
+        }
+
+        // 3. Flex 交互功能（保留不动）
+        function updateFlex(property, value, btn) {
+            const sandbox = document.getElementById('flex-sandbox');
+            const codeDisplay = property === 'justifyContent' ? 'code-justify' : 'code-align';
+            const btnClass = property === 'justifyContent' ? '.control-btn-justify' : '.control-btn-align';
+
+            if (sandbox) {
+                sandbox.style[property] = value;
+                const textElement = document.getElementById(codeDisplay);
+                if (textElement) textElement.textContent = value;
+
+                document.querySelectorAll(btnClass).forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container-highest');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-surface-container-highest');
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', loadComponents);
+    </script>
+</body>
+
+</html>

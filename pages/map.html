@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="../i18n.js"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#635d15",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#1f5467",
+                        "error": "#b31b25",
+                        "outline-variant": "#a7aeb1",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "surface": "#f1f8fa",
+                        "on-tertiary-fixed": "#014154",
+                        "inverse-on-surface": "#979ea0",
+                        "surface-bright": "#f1f8fa",
+                        "on-error": "#ffefee",
+                        "primary-container": "#89f0cb",
+                        "error-dim": "#9f0519",
+                        "surface-dim": "#cbd6da",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "secondary-dim": "#575107",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "primary-fixed-dim": "#7be2bd",
+                        "on-secondary": "#fff5a0",
+                        "surface-container-low": "#eaf2f5",
+                        "inverse-primary": "#98ffd9",
+                        "primary": "#00684f",
+                        "surface-container-highest": "#d4dfe2",
+                        "tertiary-fixed": "#b2e4fb",
+                        "tertiary-dim": "#215669",
+                        "surface-container": "#e1eaec",
+                        "on-primary-container": "#005a44",
+                        "on-tertiary": "#e4f5ff",
+                        "inverse-surface": "#080f11",
+                        "secondary-fixed": "#efe58f",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "outline": "#71787a",
+                        "on-primary-fixed": "#004533",
+                        "tertiary": "#2f6275",
+                        "secondary-container": "#efe58f",
+                        "surface-container-high": "#dae4e7",
+                        "on-secondary-container": "#59530a",
+                        "on-primary": "#c6ffe7",
+                        "on-secondary-fixed": "#464000",
+                        "error-container": "#fb5151",
+                        "surface-tint": "#00684f",
+                        "tertiary-container": "#b2e4fb",
+                        "background": "#f1f8fa",
+                        "on-background": "#293032",
+                        "surface-variant": "#d4dfe2",
+                        "on-surface-variant": "#565d5f",
+                        "on-surface": "#293032",
+                        "primary-dim": "#005b45"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .active-pixel-shadow {
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        .dotted-path {
+            background-image: radial-gradient(circle, #71787a 20%, transparent 20%);
+            background-position: 0 0;
+            background-size: 20px 20px;
+        }
+
+        /* 1. 蓝色背景下的白色像素动态化 */
+        .map-canvas-container::before {
+            content: "";
+            position: absolute;
+            /* 确保 inset 足够大以覆盖动画位移产生的边缘空白 */
+            inset: -100px;
+
+            /* 修复方案：使用两个线性渐变重合来画出正方形 */
+            /* 第一个 gradient 画垂直线，第二个画水平线，交叉点即为正方形 */
+            background: radial-gradient(rgba(255, 255, 255, 0.5) 25%, transparent 25%);
+            background-size: 16px 16px;
+            background-repeat: repeat;
+
+            /* 动画时间缩短可以让流动感更明显 */
+            animation: pixelFloat 20s linear infinite;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        @keyframes pixelFloat {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(64px, 0px);
+            }
+        }
+
+        /* 2. 虚线流动动画 */
+        .path-flow {
+            stroke-dasharray: 8, 8;
+            animation: dashFlow 1s linear infinite;
+        }
+
+        @keyframes dashFlow {
+            to {
+                stroke-dashoffset: -16;
+            }
+        }
+
+        /* 呼吸灯效果：用于进行中的模块 */
+        .status-active::after {
+            content: "";
+            position: absolute;
+            inset: -10px;
+            border-radius: 50%;
+            background: rgba(0, 104, 79, 0.2);
+            animation: pulseActive 2s infinite;
+        }
+
+        @keyframes pulseActive {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: scale(1.5);
+                opacity: 0;
+            }
+        }
+
+        /* 锁定状态：灰度处理 */
+        .status-locked {
+            filter: grayscale(1);
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container">
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')" class="p-2 bg-white border-2 border-black">中文</button>
+        <button onclick="switchLanguage('en')" class="p-2 bg-white border-2 border-black">EN</button>
+    </div>
+
+    <!-- TopNavBar Component -->
+
+    <div id="nav-placeholder"></div>
+
+    <main class="pt-24 pb-12 px-6">
+        <!-- Hero Section -->
+        <header class="max-w-7xl mx-auto mb-16 text-center">
+            <h1 class="font-headline text-5xl md:text-7xl font-black text-on-surface mb-4 tracking-tight uppercase">
+                Your Digital <span class="text-primary">Odyssey</span>
+            </h1>
+            <p class="text-lg text-on-surface-variant max-w-2xl mx-auto font-medium">
+                The world of code is vast. Navigate through the islands of logic and the mountains of syntax to reach
+                mastery.
+            </p>
+
+        </header>
+        <!-- World Map Canvas -->
+
+        <div
+            class="map-canvas-container relative w-full aspect-video max-w-5xl mx-auto border-4 border-black overflow-hidden pixel-shadow bg-[#90e0ef]">
+
+            <div id="zone-html"
+                class="absolute left-[12%] top-[45%] z-20 group cursor-pointer transition-all duration-500 hover:-translate-y-2">
+                <div class="relative w-24 md:w-32">
+                    <img src="../assets/images/html island.png"
+                        class="w-full h-auto object-contain transition-transform group-hover:scale-110"
+                        alt="HTML Island" />
+
+                    <p class="hidden">MODULE 01</p>
+                    <h3 class="hidden">HTML Island</h3>
+                </div>
+            </div>
+
+            <a id="zone-css" href="./CSS Forest.html"
+                class="absolute left-[28%] top-[35%] z-20 group cursor-pointer transition-all duration-500 hover:-translate-y-2">
+                <div class="relative w-24 md:w-32">
+                    <img src="../assets/images/css forest.png"
+                        class="w-full h-auto object-contain transition-transform group-hover:scale-110"
+                        alt="CSS Forest" />
+
+                    <p class="hidden">MODULE 02</p>
+                    <h3 class="hidden">CSS Forest</h3>
+                </div>
+            </a>
+
+            <div id="zone-js"
+                class="absolute left-[45%] top-[48%] z-20 group cursor-pointer transition-all duration-500 hover:-translate-y-2">
+                <div class="relative w-24 md:w-32">
+                    <img src="../assets/images/JS Volcano.png"
+                        class="w-full h-auto object-contain transition-transform group-hover:scale-110"
+                        alt="JS Volcano" />
+
+                    <p class="hidden">MODULE 03</p>
+                    <h3 class="hidden">JS Volcano</h3>
+                </div>
+            </div>
+
+            <div
+                class="absolute left-[62%] top-[40%] z-10 opacity-60 grayscale hover:grayscale-0 transition-all duration-700">
+                <div class="relative w-20 md:w-24">
+                    <img src="../assets/images/unlock.png" class="w-full h-auto object-contain" alt="Locked" />
+
+                    <p class="hidden">MODULE 04</p>
+                    <h3 class="hidden">API Isles</h3>
+                </div>
+            </div>
+
+            <div class="absolute left-[75%] top-[55%] z-10 opacity-60 grayscale">
+                <div class="relative w-20 md:w-24">
+                    <img src="../assets/images/unlock.png" class="w-full h-auto object-contain" alt="Locked" />
+
+                    <p class="hidden">MODULE 05</p>
+                    <h3 class="hidden">React Reef</h3>
+                </div>
+            </div>
+
+            <div id="zone-peak"
+                class="absolute left-[82%] top-[30%] z-20 group cursor-pointer transition-all duration-500 hover:-translate-y-2">
+                <div class="relative w-28 md:w-36">
+                    <img src="../assets/images/Dev Peak.png"
+                        class="w-full h-auto object-contain transition-transform group-hover:scale-110"
+                        alt="Dev Peak" />
+
+                    <p class="hidden">MODULE 06</p>
+                    <h3 class="hidden">Dev Peak</h3>
+                </div>
+            </div>
+        </div>
+
+
+
+    </main>
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script src="../components/main.js"></script>
+    <script>
+        // 页面特有逻辑：资源分类过滤
+        function initResourceFilter() {
+            const filterBtns = document.querySelectorAll('[data-category]');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+                    console.log(`正在过滤分类: ${category}`);
+                });
+            });
+        }
+
+        // 主程序：统一管理所有初始化行为
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 1. 调用公共初始化（注入导航并执行 syncNavLinks）
+                // 确保 main.js 里的 syncNavLinks 能匹配到 "map.html"
+                await initApp();
+
+                // 2. 执行 map.html 特有的 Tooltip 交互逻辑
+                const tooltip = document.getElementById('pixel-tooltip');
+                const tooltipModule = document.getElementById('tooltip-module');
+                const tooltipTitle = document.getElementById('tooltip-title');
+
+                if (tooltip) {
+                    document.addEventListener('mousemove', (e) => {
+                        tooltip.style.left = e.clientX + 'px';
+                        tooltip.style.top = e.clientY + 'px';
+                    });
+
+                    const islands = document.querySelectorAll('.group');
+                    islands.forEach(island => {
+                        island.addEventListener('mouseenter', () => {
+                            const p = island.querySelector('p');
+                            const h3 = island.querySelector('h3');
+                            if (p && h3) {
+                                tooltipModule.innerText = p.innerText;
+                                tooltipTitle.innerText = h3.innerText;
+                                tooltip.classList.replace('opacity-0', 'opacity-100');
+                            }
+                        });
+                        island.addEventListener('mouseleave', () => {
+                            tooltip.classList.replace('opacity-100', 'opacity-0');
+                        });
+                    });
+                }
+
+                // 3. 执行其他初始化
+                initResourceFilter();
+                console.log("学习路径页面所有组件加载成功");
+
+            } catch (e) {
+                console.error("加载过程中出错:", e);
+            }
+        });
+    </script>
+    <div id="pixel-tooltip"
+        class="fixed z-50 pointer-events-none opacity-0 transition-opacity duration-200 min-w-[140px] pointer-events-none"
+        style="position: fixed; transform: translate(15px, 15px);">
+        <div class="bg-white border-4 border-black p-2 pixel-shadow text-center">
+            <p id="tooltip-module" class="font-headline text-[10px] font-bold text-primary leading-none mb-1"></p>
+            <h3 id="tooltip-title" class="font-headline text-xs font-black uppercase text-black"></h3>
+        </div>
+    </div>
+</body>
+
+</html>

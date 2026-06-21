@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="i18n.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#635d15",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#1f5467",
+                        "error": "#b31b25",
+                        "outline-variant": "#a7aeb1",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "surface": "#f1f8fa",
+                        "on-tertiary-fixed": "#014154",
+                        "inverse-on-surface": "#979ea0",
+                        "surface-bright": "#f1f8fa",
+                        "on-error": "#ffefee",
+                        "primary-container": "#89f0cb",
+                        "error-dim": "#9f0519",
+                        "surface-dim": "#cbd6da",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "secondary-dim": "#575107",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "primary-fixed-dim": "#7be2bd",
+                        "on-secondary": "#fff5a0",
+                        "surface-container-low": "#eaf2f5",
+                        "inverse-primary": "#98ffd9",
+                        "primary": "#00684f",
+                        "surface-container-highest": "#d4dfe2",
+                        "tertiary-fixed": "#b2e4fb",
+                        "tertiary-dim": "#215669",
+                        "surface-container": "#e1eaec",
+                        "on-primary-container": "#005a44",
+                        "on-tertiary": "#e4f5ff",
+                        "inverse-surface": "#080f11",
+                        "secondary-fixed": "#efe58f",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "outline": "#71787a",
+                        "on-primary-fixed": "#004533",
+                        "tertiary": "#2f6275",
+                        "secondary-container": "#efe58f",
+                        "surface-container-high": "#dae4e7",
+                        "on-secondary-container": "#59530a",
+                        "on-primary": "#c6ffe7",
+                        "on-secondary-fixed": "#464000",
+                        "error-container": "#fb5151",
+                        "surface-tint": "#00684f",
+                        "tertiary-container": "#b2e4fb",
+                        "background": "#f1f8fa",
+                        "on-background": "#293032",
+                        "surface-variant": "#d4dfe2",
+                        "on-surface-variant": "#565d5f",
+                        "on-surface": "#293032",
+                        "primary-dim": "#005b45"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(41, 48, 50, 0.2);
+        }
+
+        .pixel-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(41, 48, 50, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .pixel-shadow-active:active {
+            box-shadow: 2px 2px 0px 0px rgba(41, 48, 50, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+
+        /* 3. 保留并锁定：滑块按钮 (Range Input) 的样式 */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* 滑块轨道 (Track) */
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #71787a;
+            border: none;
+        }
+
+        /* 滑块按钮 (Thumb) - 保持白色方块外观 */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background: #ffffff;
+            border: 2px solid #293032;
+            margin-top: -9px;
+            /* 居中 */
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+            transition: all 0.1s ease;
+        }
+
+        /* 滑块按下时的状态 */
+        input[type="range"]:active::-webkit-slider-thumb {
+            background: #00684f;
+            transform: scale(0.9);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container">
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')" class="p-2 bg-white border-2 border-black">中文</button>
+        <button onclick="switchLanguage('en')" class="p-2 bg-white border-2 border-black">EN</button>
+    </div>
+
+    <!-- TopNavBar Component -->
+
+    <div id="nav-placeholder"></div>
+
+    <main class="max-w-[1440px] mx-auto px-6 py-12">
+        <!-- Hero Section -->
+        <section class="mb-20">
+            <div class="bg-tertiary-container p-10 border-4 border-outline relative">
+                <div
+                    class="absolute -top-6 -right-6 w-24 h-24 bg-secondary-container border-4 border-outline flex items-center justify-center">
+                    <span class="material-symbols-outlined text-4xl text-on-secondary-container">construction</span>
+                </div>
+                <h1 data-i18n="topnav4-1"
+                    class="font-headline text-5xl md:text-7xl font-black text-on-tertiary-container mb-4 uppercase tracking-tighter">
+                    The Library
+                </h1>
+                <p data-i18n="explain library"
+                    class="text-xl md:text-2xl text-on-tertiary-container max-w-2xl font-medium leading-relaxed">
+                    A curated collection of tools, assets, and documentation to accelerate your development journey.
+                    Curated by the community, for the community.
+                </p>
+            </div>
+        </section>
+        <!-- Search & Filter -->
+        <div class="flex flex-col md:flex-row justify-between items-end gap-6 mb-12">
+            <div class="w-full md:w-1/3">
+                <label data-i18n="search1"
+                    class="block font-headline font-bold uppercase text-sm mb-2 text-outline">Search
+                    Resources</label>
+                <div class="relative">
+                    <input
+                        class="w-full bg-surface-container-lowest border-2 border-outline px-4 py-3 focus:outline-none focus:ring-0 focus:border-primary pixel-shadow"
+                        placeholder="Filter by name or tag..." type="text" data-i18n="search_placeholder"
+                        data-i18n-type="placeholder" />
+                    <span class="material-symbols-outlined absolute right-4 top-3 text-outline">search</span>
+                </div>
+            </div>
+            <div class="flex flex-wrap gap-2">
+                <button data-category="all" data-i18n="button1"
+                    class="bg-primary text-on-primary px-4 py-2 font-headline font-bold uppercase text-xs border-2 border-on-primary-fixed pixel-shadow">All</button>
+                <button data-category="editors" data-i18n="button2"
+                    class="bg-surface-container-lowest text-outline px-4 py-2 font-headline font-bold uppercase text-xs border-2 border-outline hover:border-primary hover:text-primary transition-colors">Editors</button>
+                <button data-category="icons" data-i18n="button3"
+                    class="bg-surface-container-lowest text-outline px-4 py-2 font-headline font-bold uppercase text-xs border-2 border-outline hover:border-primary hover:text-primary transition-colors">Icons</button>
+                <button data-category="inspiration" data-i18n="button4"
+                    class="bg-surface-container-lowest text-outline px-4 py-2 font-headline font-bold uppercase text-xs border-2 border-outline hover:border-primary hover:text-primary transition-colors">Inspiration</button>
+                <button data-category="community" data-i18n="button5"
+                    class="bg-surface-container-lowest text-outline px-4 py-2 font-headline font-bold uppercase text-xs border-2 border-outline hover:border-primary hover:text-primary transition-colors">Community</button>
+            </div>
+        </div>
+        <!-- Resource Categories Grid -->
+        <div class="space-y-16">
+            <!-- Category: Editors -->
+            <section id="section-editors">
+                <div class="flex items-center gap-4 mb-8">
+                    <div
+                        class="w-12 h-12 bg-primary-container border-2 border-primary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-primary-container">code</span>
+                    </div>
+                    <h2 class="font-headline text-3xl font-black uppercase tracking-tight text-primary">Editors &amp;
+                        IDEs</h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Tool Card -->
+                    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener noreferrer"
+                        class="bg-surface-container-lowest border-4 border-outline p-6 pixel-shadow-hover transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <img src="../assets/images/VScode.png" alt="VScodeLOGO">
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">open_in_new</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-extrabold mb-2 uppercase tracking-tighter">VS Code</h3>
+                        <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                            The industry standard editor with a vast ecosystem of extensions for every language
+                            imaginable.
+                        </p>
+                        <div class="flex gap-2">
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">Utility</span>
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">Free</span>
+                        </div>
+                    </a>
+                    <a href="https://www.jetbrains.com/webstorm/" target="_blank" rel="noopener noreferrer"
+                        class="bg-surface-container-lowest border-4 border-outline p-6 pixel-shadow-hover transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <img src="../assets/images/WebStorm.png" alt="WebStormLOGO">
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">open_in_new</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-extrabold mb-2 uppercase tracking-tighter">WebStorm</h3>
+                        <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                            The smartest JavaScript IDE. Deep refactoring and debugging features right out of the box.
+                        </p>
+                        <div class="flex gap-2">
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">Premium</span>
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">JS</span>
+                        </div>
+                    </a>
+                    <a href="https://codesandbox.io/ " target="_blank" rel="noopener noreferrer"
+                        class="bg-surface-container-lowest border-4 border-outline p-6 pixel-shadow-hover transition-all group">
+                        <div class="flex justify-between items-start mb-4">
+                            <div class="w-10 h-10 flex items-center justify-center">
+                                <img src="../assets/images/Codesandbox.png" alt="CodesandboxLOGO">
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-outline group-hover:text-primary transition-colors">open_in_new</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-extrabold mb-2 uppercase tracking-tighter">CodeSandbox
+                        </h3>
+                        <p class="text-on-surface-variant text-sm mb-6 leading-relaxed">
+                            Cloud-based development environment that makes collaboration and prototyping instant.
+                        </p>
+                        <div class="flex gap-2">
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">Online</span>
+                            <span
+                                class="bg-surface-container px-2 py-1 text-[10px] font-bold uppercase text-outline">Web</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+            <!-- Category: Icons & Assets -->
+            <section id="section-icons" class="bg-surface-container-low -mx-6 px-6 py-16">
+                <div class="max-w-[1440px] mx-auto">
+                    <div class="flex items-center gap-4 mb-8">
+                        <div
+                            class="w-12 h-12 bg-secondary-container border-2 border-secondary flex items-center justify-center">
+                            <span class="material-symbols-outlined text-on-secondary-container">palette</span>
+                        </div>
+                        <h2 class="font-headline text-3xl font-black uppercase tracking-tight text-secondary">Icons
+                            &amp; Assets</h2>
+                    </div>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <!-- Resource List Item -->
+                        <div
+                            class="bg-surface-container-lowest border-2 border-outline p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-lg mb-1">Lucide Icons</h4>
+                                <p class="text-xs text-on-surface-variant mb-4">Community-run fork of Feather. Clean,
+                                    beautiful, and consistent.</p>
+                            </div>
+                            <a class="text-primary font-bold uppercase text-xs flex items-center gap-2 group" href="#">
+                                View Library <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div
+                            class="bg-surface-container-lowest border-2 border-outline p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-lg mb-1">Phosphor</h4>
+                                <p class="text-xs text-on-surface-variant mb-4">A flexible icon family for interfaces,
+                                    diagrams, and presentations.</p>
+                            </div>
+                            <a class="text-primary font-bold uppercase text-xs flex items-center gap-2 group" href="#">
+                                View Library <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div
+                            class="bg-surface-container-lowest border-2 border-outline p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-lg mb-1">Heroicons</h4>
+                                <p class="text-xs text-on-surface-variant mb-4">Beautiful hand-crafted SVG icons, by the
+                                    makers of Tailwind CSS.</p>
+                            </div>
+                            <a class="text-primary font-bold uppercase text-xs flex items-center gap-2 group" href="#">
+                                View Library <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                        <div
+                            class="bg-surface-container-lowest border-2 border-outline p-5 flex flex-col justify-between">
+                            <div>
+                                <h4 class="font-headline font-bold uppercase text-lg mb-1">Unsplash</h4>
+                                <p class="text-xs text-on-surface-variant mb-4">The internet's source for freely usable
+                                    images. High resolution.</p>
+                            </div>
+                            <a class="text-primary font-bold uppercase text-xs flex items-center gap-2 group" href="#">
+                                View Library <span
+                                    class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Category: Inspiration -->
+            <section id="section-inspiration">
+                <div class="flex items-center gap-4 mb-8">
+                    <div
+                        class="w-12 h-12 bg-tertiary-container border-2 border-tertiary flex items-center justify-center">
+                        <span class="material-symbols-outlined text-on-tertiary-container">auto_awesome</span>
+                    </div>
+                    <h2 class="font-headline text-3xl font-black uppercase tracking-tight text-tertiary">Inspiration
+                    </h2>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Featured Inspiration Card -->
+                    <div
+                        class="flex flex-col md:flex-row border-4 border-outline overflow-hidden bg-surface-container-lowest pixel-shadow">
+                        <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                data-alt="Screenshot of a vibrant design portfolio website with diverse UI elements and colorful layouts"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7VOPeJoCSZ_7-PNH93t3wVLiNa42TpU7BEUmAlsiEN0_dFdrLRKeybGhlfBDdfO-YjoSnw6TbDJhLdieR5NBCyr6v9HW0muibegzTv-Hsz6wsZPQ4rIXOSUmN_4Hij8sM_lR1CxxCvv5W55n0RtDXIGasSvANh5TPt9PARLz9kGXXu24__C3GYDgjkgjNHcfLHqwdsKTPCyQzLjYODiYyY6_11QfkB2hIE5obazsO942H0G1_oQJU3leFiPt9NeuI41RZGQJP9ho" />
+                        </div>
+                        <div class="md:w-1/2 p-6 flex flex-col justify-center">
+                            <h3 class="font-headline text-2xl font-black uppercase mb-2">Dribbble</h3>
+                            <p class="text-on-surface-variant text-sm mb-6">Explore the world’s leading design
+                                portfolios. Great for UI/UX inspiration and layout ideas.</p>
+                            <button
+                                class="w-fit bg-tertiary text-on-tertiary px-6 py-2 font-headline font-bold uppercase text-sm border-2 border-tertiary-dim pixel-shadow-active">Visit
+                                Site</button>
+                        </div>
+                    </div>
+                    <div
+                        class="flex flex-col md:flex-row border-4 border-outline overflow-hidden bg-surface-container-lowest pixel-shadow">
+                        <div class="md:w-1/2 h-48 md:h-auto overflow-hidden">
+                            <img class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
+                                data-alt="Award-winning website showcase with experimental typography and interactive digital experiences"
+                                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBMcrrfQidJLNmve4vJuecQRnqCVZkQF3jLbYSJ9uH_9MOrVQaO6YwrOrbIyHBMnrW8yPv2YDtjFXcjysf-HdGz2Fp9kX4q5CRiiYXz1DwIGH3SVv5YEUqDHj4F1lqg4C4_3rUb8VswmSvfpax1sNAxwxi7ztLYODVtCphym2BMp6L5uJPjvDzIF759frsmDtT3Yi5SDX60amUsa4-Mo5rcCnjEz4V6f0EkiWhJRmaFlSv-mfgBg_cdpcAi5YVNUIopW01OXzk-Dy4" />
+                        </div>
+                        <div class="md:w-1/2 p-6 flex flex-col justify-center">
+                            <h3 class="font-headline text-2xl font-black uppercase mb-2">Awwwards</h3>
+                            <p class="text-on-surface-variant text-sm mb-6">The best websites of the year. Push the
+                                boundaries of what is possible on the web platform.</p>
+                            <button
+                                class="w-fit bg-tertiary text-on-tertiary px-6 py-2 font-headline font-bold uppercase text-sm border-2 border-tertiary-dim pixel-shadow-active">Visit
+                                Site</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!-- Community CTA -->
+            <section id="section-community" class="mt-24 text-center">
+                <div class="bg-primary-container border-4 border-primary p-12 relative overflow-hidden">
+                    <!-- Pixel Decorative Element -->
+                    <div class="absolute top-0 left-0 w-8 h-8 bg-primary opacity-20"></div>
+                    <div class="absolute bottom-0 right-0 w-16 h-16 bg-primary opacity-20"></div>
+                    <h2 class="font-headline text-4xl font-black uppercase mb-4 text-on-primary-container">Missing
+                        something?</h2>
+                    <p class="text-on-primary-container font-medium max-w-xl mx-auto mb-8">
+                        The Library is built by developers like you. If you have a resource that helped you, share it
+                        with the W-edu community!
+                    </p>
+                    <button
+                        class="bg-primary text-on-primary px-10 py-4 font-headline font-black uppercase text-lg border-2 border-on-primary-fixed pixel-shadow-hover pixel-shadow-active">
+                        Submit a Resource
+                    </button>
+                </div>
+            </section>
+        </div>
+    </main>
+    <!-- Footer -->
+    <footer class="bg-[#eaf2f5] dark:bg-slate-950 w-full border-t-4 border-[#71787a] mt-20">
+        <div class="flex flex-col md:flex-row justify-between items-center px-10 py-12 gap-6 max-w-[1440px] mx-auto">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="text-lg font-bold text-[#00684f] mb-2 font-headline"></div>
+                <p class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-[#2f6275] opacity-80">
+                    © 2026 Digital Atelier. Built bit by bit.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-8">
+                <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-[#2f6275] opacity-80 hover:opacity-100 hover:text-[#00684f] transition-opacity duration-200"
+                    href="#">Documentation</a>
+                <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-[#2f6275] opacity-80 hover:opacity-100 hover:text-[#00684f] transition-opacity duration-200"
+                    href="#">Curriculum</a>
+                <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-[#2f6275] opacity-80 hover:opacity-100 hover:text-[#00684f] transition-opacity duration-200"
+                    href="#">Privacy</a>
+                <a class="font-['Plus_Jakarta_Sans'] text-sm font-medium text-[#2f6275] opacity-80 hover:opacity-100 hover:text-[#00684f] transition-opacity duration-200"
+                    href="#">Community</a>
+            </div>
+            <div class="flex gap-4">
+                <span class="material-symbols-outlined text-[#2f6275] cursor-pointer hover:text-primary">language</span>
+                <span class="material-symbols-outlined text-[#2f6275] cursor-pointer hover:text-primary">terminal</span>
+                <span class="material-symbols-outlined text-[#2f6275] cursor-pointer hover:text-primary">rss_feed</span>
+            </div>
+        </div>
+    </footer>
+    <script src="../components/main.js"></script>
+    <script>
+        // 页面特有逻辑：资源分类过滤
+        function initResourceFilter() {
+            const filterBtns = document.querySelectorAll('[data-category]');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-category');
+                    console.log(`正在过滤分类: ${category}`);
+                    // 这里可以添加隐藏/显示 Section 的逻辑
+                });
+            });
+        }
+
+        // 主程序
+        window.addEventListener('DOMContentLoaded', async () => {
+            try {
+                // 1. 调用 main.js 里的函数 (确保 main.js 已经创建并包含 initApp)
+                if (typeof initApp === 'function') {
+                    await initApp();
+                } else {
+                    console.error("main.js 未加载或 initApp 函数不存在");
+                }
+
+                // 2. 执行本页特有初始化
+                initResourceFilter();
+
+            } catch (e) {
+                console.error("初始化过程中出错:", e);
+            }
+        });
+    </script>
+</body>
+
+</html>

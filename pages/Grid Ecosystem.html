@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="i18n.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary": "#635d15",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-error-container": "#570008",
+                        "on-tertiary-container": "#1f5467",
+                        "error": "#b31b25",
+                        "outline-variant": "#a7aeb1",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "surface": "#f1f8fa",
+                        "on-tertiary-fixed": "#014154",
+                        "inverse-on-surface": "#979ea0",
+                        "surface-bright": "#f1f8fa",
+                        "on-error": "#ffefee",
+                        "primary-container": "#89f0cb",
+                        "error-dim": "#9f0519",
+                        "surface-dim": "#cbd6da",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "secondary-dim": "#575107",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "primary-fixed-dim": "#7be2bd",
+                        "on-secondary": "#fff5a0",
+                        "surface-container-low": "#eaf2f5",
+                        "inverse-primary": "#98ffd9",
+                        "primary": "#00684f",
+                        "surface-container-highest": "#d4dfe2",
+                        "tertiary-fixed": "#b2e4fb",
+                        "tertiary-dim": "#215669",
+                        "surface-container": "#e1eaec",
+                        "on-primary-container": "#005a44",
+                        "on-tertiary": "#e4f5ff",
+                        "inverse-surface": "#080f11",
+                        "secondary-fixed": "#efe58f",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "outline": "#71787a",
+                        "on-primary-fixed": "#004533",
+                        "tertiary": "#2f6275",
+                        "secondary-container": "#efe58f",
+                        "surface-container-high": "#dae4e7",
+                        "on-secondary-container": "#59530a",
+                        "on-primary": "#c6ffe7",
+                        "on-secondary-fixed": "#464000",
+                        "error-container": "#fb5151",
+                        "surface-tint": "#00684f",
+                        "tertiary-container": "#b2e4fb",
+                        "background": "#f1f8fa",
+                        "on-background": "#293032",
+                        "surface-variant": "#d4dfe2",
+                        "on-surface-variant": "#565d5f",
+                        "on-surface": "#293032",
+                        "primary-dim": "#005b45"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(41, 48, 50, 0.2);
+        }
+
+        .pixel-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(41, 48, 50, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .pixel-shadow-active:active {
+            box-shadow: 2px 2px 0px 0px rgba(41, 48, 50, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+
+        /* 3. 保留并锁定：滑块按钮 (Range Input) 的样式 */
+        input[type="range"] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        /* 滑块轨道 (Track) */
+        input[type="range"]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 4px;
+            background: #71787a;
+            border: none;
+        }
+
+        /* 滑块按钮 (Thumb) - 保持白色方块外观 */
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 20px;
+            width: 20px;
+            background: #ffffff;
+            border: 2px solid #293032;
+            margin-top: -9px;
+            /* 居中 */
+            box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 0.2);
+            transition: all 0.1s ease;
+        }
+
+        /* 滑块按下时的状态 */
+        input[type="range"]:active::-webkit-slider-thumb {
+            background: #00684f;
+            transform: scale(0.9);
+            box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container">
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')" class="p-2 bg-white border-2 border-black">中文</button>
+        <button onclick="switchLanguage('en')" class="p-2 bg-white border-2 border-black">EN</button>
+    </div>
+
+    <!-- TopNavBar Component -->
+
+    <div id="nav-placeholder"></div>
+
+    <!-- Main Content Canvas -->
+    <main class="max-w-[1000px] mx-auto px-6 py-12 md:py-20">
+        <!-- Breadcrumbs / Meta -->
+        <div class="flex items-center gap-2 mb-8 font-label text-sm font-medium text-tertiary">
+            <span class="material-symbols-outlined text-sm text-on-surface">folder</span>
+            <a href="./map.html" class="text-on-surface-variant hover:text-primary">World Map</a>
+            <span class="material-symbols-outlined mx-2 text-sm" data-icon="chevron_right">chevron_right</span>
+            <a href="./CSS Forest.html" class="text-on-surface-variant hover:text-primary">CSS</a>
+            <span class="material-symbols-outlined mx-2 text-sm" data-icon="chevron_right">chevron_right</span>
+            <span class="text-on-surface hover:text-primary">Grid Ecosystem</span>
+        </div>
+
+
+        <!-- Hero Header -->
+        <header class="mb-16">
+            <h1
+                class="font-headline text-5xl md:text-7xl font-bold text-on-background mb-6 tracking-tight leading-tight">
+                Grid <span
+                    class="text-primary underline decoration-4 underline-offset-8 decoration-primary-container">Ecosystem</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-on-surface-variant font-medium leading-relaxed max-w-3xl">
+                Flexbox is a one-dimensional layout (rows or columns), while Grid is a two-dimensional layout. It allows
+                you to precisely control the distribution of elements in both the vertical and horizontal directions.
+            </p>
+        </header>
+
+        <!-- Concept Section: The Container -->
+        <section class="mb-12">
+            <div class="bg-surface-container-low p-8 border-l-8 border-primary mb-10">
+                <h2 class="font-headline text-2xl font-bold text-on-primary-container mb-4 flex items-center gap-3">
+                    <span class="material-symbols-outlined" text-primary>align_center</span>
+                    <span>
+                        The Grid Container
+                </h2>
+                <p class="text-on-surface leading-loose mb-6">
+                    By setting the container to <code
+                        class="bg-primary-container px-2 font-bold text-on-primary-container">display: grid</code>,
+                    you activate a 2D coordinate system. By defining Columns and Rows, you design a precise blueprint
+                    for your elements. It’s no longer just a line; it’s a structured ecosystem where every component
+                    finds its place at the intersection of horizontal and vertical axis.
+                </p>
+
+                <!-- Bento Grid: Main Concepts -->
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-20">
+                    <!-- Concept Card 1 -->
+                    <div class="bg-surface-container-lowest border-4 border-outline p-8 flex flex-col gap-4">
+                        <div
+                            class="w-12 h-12 bg-secondary-container flex items-center justify-center border-2 border-outline">
+                            <span class="material-symbols-outlined text-primary">view_column</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold uppercase">Grid Blueprint: Columns
+                        </h3>
+                        <div class="text-on-surface-variant text-sm leading-relaxed">Columns are the skeleton of the
+                            grid ecosystem. Through `grid-template-columns`, you are dividing what would otherwise be a
+                            chaotic space into ordered vertical territories.
+
+                            Whether using the 1fr unit to divide the space evenly or the efficient `repeat()` function,
+                            you are determining the width proportions of this land. Remember, in the world of Grid, the
+                            container is the true architect; it pre-draws the blueprint, ensuring that every element
+                            fits precisely into its place.
+                        </div>
+                    </div>
+                    <!-- Concept Card 2 -->
+                    <div class="bg-surface-container-lowest border-4 border-outline p-8 flex flex-col gap-4">
+                        <div
+                            class="w-12 h-12 bg-tertiary-container flex items-center justify-center border-2 border-outline">
+                            <span class="material-symbols-outlined text-primary">View_Compact_Alt</span>
+                        </div>
+                        <h3 class="font-headline text-xl font-bold uppercase">The Breathing Space: Gap
+                        </h3>
+                        <div class="text-on-surface-variant text-sm leading-relaxed">Even perfect order requires social
+                            distancing. The `gap` property defines a "buffer zone" between rows and columns.
+
+                            Unlike traditional margins, `gap` is a real gap existing between grid tracks. It ensures
+                            that your digital components, while tightly packed, still have enough visual breathing room.
+                            Adjusting it is like widening streets in urban planning, making the entire ecosystem look
+                            more relaxed and harmonious.
+                        </div>
+                    </div>
+                </section>
+
+                <section class="mt-20 pt-12 border-t-4 border-outline-variant/30">
+                    <section class="mb-20">
+                        <div class="bg-surface-container-high border-4 border-outline p-4 pixel-shadow relative">
+                            <div data-i18n="sandbox_title"
+                                class="absolute -top-4 right-4 bg-primary px-3 py-1 font-headline font-black text-sm text-on-primary border-2 border-outline z-10 shadow-[4px_4px_0px_rgba(0,0,0,1)]">
+                                Live Sandbox
+                            </div>
+
+                            <div class="flex items-center mb-4 border-b-2 border-outline pb-2">
+                                <div class="flex gap-2">
+                                    <div class="w-3 h-3 bg-error-dim border border-outline"></div>
+                                    <div class="w-3 h-3 bg-secondary border border-outline"></div>
+                                    <div class="w-3 h-3 bg-primary border border-outline"></div>
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
+
+                                <div
+                                    class="lg:col-span-8 bg-surface-container-lowest border-4 border-outline p-8 h-[600px] flex items-center justify-center grid-canvas relative overflow-hidden">
+                                    <div id="grid-sandbox" class="grid w-full h-full gap-4 transition-all duration-300"
+                                        style="grid-template-columns: repeat(1, 1fr);">
+
+                                        <div
+                                            class="border-2 border-on-surface bg-primary-container flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            1</div>
+                                        <div
+                                            class="border-2 border-on-surface bg-[#b2e4fb] flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            2</div>
+                                        <div
+                                            class="border-2 border-on-surface bg-[#efe58f] flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            3</div>
+                                        <div
+                                            class="border-2 border-on-surface bg-primary-container flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            4</div>
+                                        <div
+                                            class="border-2 border-on-surface bg-[#b2e4fb] flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            5</div>
+                                        <div
+                                            class="border-2 border-on-surface bg-[#efe58f] flex items-center justify-center font-headline font-bold text-2xl h-full">
+                                            6</div>
+                                    </div>
+                                </div>
+
+                                <aside class="lg:col-span-4 flex flex-col gap-6">
+                                    <div class="bg-surface-container-lowest border-4 border-outline p-6 h-full ">
+                                        <h2 class="font-headline font-bold uppercase mb-6 flex items-center gap-2">
+                                            <span class="material-symbols-outlined"
+                                                style="font-variation-settings: 'FILL' 1;">tune</span> 属性控制
+                                        </h2>
+
+                                        <div class="mb-8">
+                                            <label
+                                                class="font-label text-xs font-bold uppercase text-outline mr-2">Columns
+                                            </label>
+                                            <div class="flex flex-col gap-2">
+                                                <button onclick="updateGrid('cols', 'repeat(1, 1fr)', this)"
+                                                    class="control-btn-cols py-3 border-2 border-outline font-headline font-bold bg-surface-container-highest active:translate-y-1 transition-all">1
+                                                    COL</button>
+                                                <button onclick="updateGrid('cols', 'repeat(2, 1fr)', this)"
+                                                    class="control-btn-cols py-3 border-2 border-outline font-headline font-bold bg-surface-container-highest active:translate-y-1 transition-all">2
+                                                    COLS</button>
+                                                <button onclick="updateGrid('cols', 'repeat(3, 1fr)', this)"
+                                                    class="control-btn-cols py-3 border-2 border-outline font-headline font-bold bg-primary text-on-primary active:translate-y-1 transition-all">3
+                                                    COLS</button>
+                                            </div>
+                                        </div>
+
+                                        <div class="flex flex-col mb-6">
+                                            <div class="flex justify-between items-center mb-3">
+                                                <label class="font-label text-xs font-bold uppercase text-outline">
+                                                    Grid Gap
+                                                </label>
+                                                <span id="gap-val" class="font-mono text-primary font-bold">16px</span>
+                                            </div>
+
+                                            <div class="relative flex items-center">
+                                                <input type="range" id="gap-slider" min="0" max="40" value="16"
+                                                    class="w-full h-2 bg-outline-variant appearance-none cursor-pointer accent-primary border border-outline/20">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </aside>
+
+                                <div
+                                    class="lg:col-span-12 bg-inverse-surface border-4 border-outline p-4 pixel-shadow relative mt-4">
+                                    <div data-i18n="sandbox_live_css"
+                                        class="absolute -top-4 right-4 bg-primary px-3 py-1 font-label text-[10px] font-bold uppercase text-on-primary border-2 border-outline z-10">
+                                        Live CSS
+                                    </div>
+                                    <pre class="font-mono text-lg text-surface-container-lowest mt-2"><code>.container {
+  display: <span class="text-primary-container">grid</span>;
+  grid-template-columns: <span id="code-columns" class="text-[#efe58f]">repeat(3, 1fr)</span>;
+  gap: <span id="code-gap" class="text-[#efe58f]">16px</span>;
+}</code></pre>
+                                </div>
+                            </div>
+                        </div>
+                        <section class="mt-20 pt-12 border-t-4 border-outline-variant/30">
+                            <div class="bg-primary-container border-4 border-primary p-6 relative select-text">
+                                <p class="font-bold mb-2">文案待定</p>
+                                <p class="text-sm leading-relaxed">文案待定</p>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+        </section>
+    </main>
+
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function inject(id, url) {
+            try {
+                const res = await fetch(url);
+                const html = await res.text();
+                const target = document.getElementById(id);
+                if (target) target.innerHTML = html;
+            } catch (err) { console.error(err); }
+        }
+
+        async function loadComponents() {
+            await Promise.all([
+                inject('nav-placeholder', '../components/nav.html'),
+                inject('footer-placeholder', '../components/footer.html')
+            ]);
+
+            // 注入后手动挂载符合规范的动画类
+            const startBtn = document.querySelector('nav button[data-i18n="btn_start"]');
+            if (startBtn) {
+                startBtn.classList.add('pixel-shadow-active', 'rounded-none');
+            }
+        }
+
+        function updateGrid(type, value, btn) {
+            const sandbox = document.getElementById('grid-sandbox');
+            const codeCols = document.getElementById('code-columns');
+
+            if (type === 'cols') {
+                sandbox.style.gridTemplateColumns = value;
+                codeCols.textContent = value;
+
+                document.querySelectorAll('.control-btn-cols').forEach(b => {
+                    b.classList.remove('bg-primary', 'text-on-primary');
+                    b.classList.add('bg-surface-container-highest');
+                });
+                btn.classList.add('bg-primary', 'text-on-primary');
+                btn.classList.remove('bg-surface-container-highest');
+            }
+        }
+
+        function initSliders() {
+            const gapSlider = document.getElementById('gap-slider');
+            const sandbox = document.getElementById('grid-sandbox');
+
+            if (gapSlider) {
+                gapSlider.oninput = () => {
+                    const val = gapSlider.value + 'px';
+                    sandbox.style.gap = val;
+                    document.getElementById('gap-val').textContent = val;
+                    document.getElementById('code-gap').textContent = val;
+                };
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            loadComponents();
+            initSliders();
+        });
+    </script>
+</body>
+
+</html>

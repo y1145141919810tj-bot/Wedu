@@ -1,0 +1,457 @@
+<!-- Resources: Tools for Success -->
+<!DOCTYPE html>
+
+<html class="light" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700;800;900&amp;family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#e4f5ff",
+                        "on-background": "#293032",
+                        "surface-container-highest": "#d4dfe2",
+                        "primary": "#00684f",
+                        "background": "#f1f8fa",
+                        "inverse-on-surface": "#979ea0",
+                        "outline-variant": "#a7aeb1",
+                        "error-dim": "#9f0519",
+                        "outline": "#71787a",
+                        "primary-dim": "#005b45",
+                        "error-container": "#fb5151",
+                        "on-primary-fixed": "#004533",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "surface": "#f1f8fa",
+                        "secondary": "#635d15",
+                        "tertiary-fixed": "#b2e4fb",
+                        "on-surface-variant": "#565d5f",
+                        "inverse-primary": "#98ffd9",
+                        "on-secondary-container": "#59530a",
+                        "surface-tint": "#00684f",
+                        "surface-variant": "#d4dfe2",
+                        "surface-container-high": "#dae4e7",
+                        "secondary-fixed": "#efe58f",
+                        "on-primary": "#c6ffe7",
+                        "tertiary-dim": "#215669",
+                        "on-error": "#ffefee",
+                        "on-primary-container": "#005a44",
+                        "secondary-container": "#efe58f",
+                        "surface-bright": "#f1f8fa",
+                        "tertiary-container": "#b2e4fb",
+                        "on-error-container": "#570008",
+                        "tertiary": "#2f6275",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "on-secondary": "#fff5a0",
+                        "primary-container": "#89f0cb",
+                        "error": "#b31b25",
+                        "surface-container-low": "#eaf2f5",
+                        "on-secondary-fixed": "#464000",
+                        "secondary-dim": "#575107",
+                        "surface-container": "#e1eaec",
+                        "primary-fixed-dim": "#7be2bd",
+                        "inverse-surface": "#080f11",
+                        "on-surface": "#293032",
+                        "surface-dim": "#cbd6da",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-tertiary-fixed": "#014154",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-tertiary-container": "#1f5467"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(41, 48, 50, 0.2);
+        }
+
+        .pixel-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(41, 48, 50, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .pixel-shadow-active:active {
+            box-shadow: 0px 0px 0px 0px rgba(41, 48, 50, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        /* 1. 背景图向右移动并消失 */
+        .active-site #splash-bg {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+
+        /* 2. 标题文字向左移动并消失 */
+        .active-site #splash-text {
+            transform: translate(-30vw, 5vh);
+            opacity: 0;
+        }
+
+        /* 3. LOGO (电脑) 移动到目标位置并缩小 */
+        /* 数值需要根据你图二中电脑的具体位置微调 */
+        .active-site #hero-pc {
+            transform: translate(-26vw, -44vh) scale(0.2);
+            opacity: 0;
+        }
+
+        /* 4. 整个扉页容器最终隐藏，允许点击下方元素 */
+        .active-site #splash {
+            pointer-events: none;
+            background-color: transparent;
+        }
+
+        /* 5. 底部网页显现 */
+        .active-site #main-content {
+            opacity: 1;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+    </style>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="i18n.js"></script>
+</head>
+
+<body
+    class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container overflow-hidden">
+
+    <div id="splash" onclick="startTransition()"
+        class="fixed inset-0 z-[100] transition-all duration-1000 ease-in-out flex items-center justify-center overflow-hidden cursor-pointer">
+
+        <img id="splash-bg" src="../assets/images/jimeng-2026-03-30-6556-优化图中的纹理细节，8bit像素风，整张图片为纯蓝色的背景，电脑屏幕，图2中电脑_.png"
+            class="absolute top-0 left-0 w-screen h-screen object-cover object-top z-0 transition-all duration-1000"
+            alt="Splash Background">
+
+        <img id="hero-pc" src="../assets/images/LOGO1.png"
+            class="relative z-20 w-[20%] transition-all duration-1000 ease-in-out transform hover:scale-110" />
+
+        <div id="splash-text" class="relative z-10 transform translate-x-24 mr-20 max-w-xl transition-all duration-700">
+            <h1 class="font-headline text-6xl font-black tracking-tighter transition-all duration-1000 hover:scale-105">
+                Start Your Quest <br>
+                into <span class="italic text-primary">Web <br>
+                    Development</span>
+            </h1>
+        </div>
+    </div>
+
+    <main id="main-content" class=" transition-opacity duration-1000 ease-in-out">
+    </main>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap" rel="stylesheet">
+    <!-- TopNavBar Component -->
+    <main class="opacity-0 transition-opacity duration-1000">
+    </main>
+
+    <div id="nav-placeholder"></div>
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')" class="p-2 bg-white border-2 border-black">中文</button>
+        <button onclick="switchLanguage('en')" class="p-2 bg-white border-2 border-black">EN</button>
+    </div>
+
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-surface pt-8 md:pt-14 pb-20 md:pb-32">
+        <div class="max-w-[1440px] mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div class="z-10">
+                <h1
+                    class="font-headline text-5xl md:text-7xl font-black text-on-surface leading-none tracking-tight mb-8">
+                    Start Your Quest <br />into <span class="text-primary italic">Web Development</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-on-surface-variant max-w-xl mb-10 leading-relaxed">
+                    Master the digital forge. Learn HTML, CSS, and JavaScript through an immersive, game-like experience
+                    designed for the next generation of creators.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="../pages/map.html"
+                        class="bg-primary text-on-primary font-headline text-xl font-bold uppercase px-10 py-5 border-4 border-on-primary-fixed pixel-shadow-hover pixel-shadow-active">
+                        Begin Your Journey
+                    </a>
+                </div>
+            </div>
+            <div class="relative">
+                <div
+                    class="relative group border-8 border-outline bg-surface-container-highest p-4 pixel-shadow overflow-hidden cursor-pointer max-w-2xl mx-auto">
+
+                    <img src="../assets/images/bottom.png"
+                        class="relative z-0 w-full aspect-video object-cover object-[center_30%]" alt="Desk setup">
+
+                    <img src="../assets/images/left.png" class="absolute z-10 pointer-events-none transition-all duration-500 ease-out object-contain
+                /* 初始位置：需要微调，让它盖在杯子上 */
+                left-[8%] bottom-[50%] w-[22%] h-[22%]
+                /* 悬停效果：向上飞并倾斜 */
+                group-hover:-translate-y-14 group-hover:rotate-12 group-hover:scale-110" alt="Left Lid">
+
+                    <img src="../assets/images/right.png" class="absolute z-10 pointer-events-none transition-all duration-500 ease-out object-contain
+                /* 初始位置：微调 */
+                right-[11%] bottom-[35%] w-[20%] h-[20%] rotate-45
+                /* 悬停效果：飞得更高一点，反向倾斜 */
+                group-hover:-translate-y-20 group-hover:rotate-12 group-hover:scale-110" alt="Right Lid">
+                </div>
+                <!-- Decorative Elements -->
+                <div class="absolute -top-6 -right-6 w-24 h-24 bg-primary-container border-4 border-primary z-0"></div>
+                <div
+                    class="absolute -bottom-10 -left-10 w-40 h-40 bg-secondary-container border-4 border-secondary z-0">
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- Featured Topics - Bento Grid -->
+    <section class="bg-surface-container-low py-24">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="font-headline text-4xl md:text-5xl font-extrabold tracking-tight">Core Disciplines</h2>
+                    <p class="text-lg text-on-surface-variant mt-2 font-medium">The essential building blocks of the
+                        web.</p>
+                </div>
+                <div class="flex gap-2">
+                    <div class="w-4 h-4 bg-primary"></div>
+                    <div class="w-4 h-4 bg-secondary"></div>
+                    <div class="w-4 h-4 bg-tertiary"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+                <!-- HTML Card -->
+                <div
+                    class="md:col-span-8 group bg-surface-container-lowest border-4 border-outline p-8 pixel-shadow-hover transition-all">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="bg-primary-container p-4 border-2 border-primary">
+                            <span class="material-symbols-outlined text-primary text-4xl" data-icon="html">html</span>
+                        </div>
+                        <span class="font-headline font-bold text-outline opacity-30 text-6xl">01</span>
+                    </div>
+                    <h3 class="font-headline text-3xl font-black mb-4">HTML: The Skeleton</h3>
+                    <p class="text-lg text-on-surface-variant mb-8 max-w-md leading-relaxed">
+                        Construct the structural foundation of every website. Learn semantic tags, accessibility, and
+                        the art of digital architecture.
+                    </p>
+                    <div
+                        class="flex gap-4 items-center font-headline font-bold text-primary group-hover:gap-6 transition-all">
+                        <span>START MODULE</span>
+                        <span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+                    </div>
+                </div>
+                <!-- Progress Pixel Sidebar -->
+                <div
+                    class="md:col-span-4 bg-tertiary-container border-4 border-outline p-8 flex flex-col justify-between">
+                    <div>
+                        <h3 class="font-headline text-2xl font-black mb-6">World Progress</h3>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <div class="w-8 h-8 bg-primary border-2 border-on-primary-fixed"></div>
+                            <div class="w-8 h-8 bg-primary border-2 border-on-primary-fixed"></div>
+                            <div class="w-8 h-8 bg-primary border-2 border-on-primary-fixed"></div>
+                            <div class="w-8 h-8 bg-surface-container-lowest border-2 border-outline"></div>
+                            <div class="w-8 h-8 bg-surface-container-lowest border-2 border-outline"></div>
+                            <div class="w-8 h-8 bg-surface-container-lowest border-2 border-outline"></div>
+                            <div class="w-8 h-8 bg-surface-container-lowest border-2 border-outline"></div>
+                            <div class="w-8 h-8 bg-surface-container-lowest border-2 border-outline"></div>
+                        </div>
+                        <p class="font-medium text-on-tertiary-container">3 of 8 Zones Discovered</p>
+                    </div>
+                    <div class="bg-white/40 p-4 border-2 border-dashed border-outline text-sm">
+                        Pro Tip: Mastering CSS Flexbox unlocks the "Grid Master" achievement!
+                    </div>
+                </div>
+                <!-- CSS Card -->
+                <div
+                    class="md:col-span-6 bg-secondary-container border-4 border-outline p-8 pixel-shadow-hover transition-all">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="bg-white p-4 border-2 border-secondary">
+                            <span class="material-symbols-outlined text-secondary text-4xl" data-icon="css">css</span>
+                        </div>
+                        <span class="font-headline font-bold text-secondary opacity-30 text-6xl">02</span>
+                    </div>
+                    <h3 class="font-headline text-3xl font-black mb-4">CSS: The Skin</h3>
+                    <p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                        Breathe life into layouts with colors, animations, and responsive design systems that look
+                        pixel-perfect on any device.
+                    </p>
+                    <button
+                        class="bg-secondary text-on-secondary font-headline font-bold px-6 py-2 border-2 border-on-secondary-fixed">EXPLORE
+                        STYLES</button>
+                </div>
+                <!-- JS Card -->
+                <div
+                    class="md:col-span-6 bg-primary-container border-4 border-outline p-8 pixel-shadow-hover transition-all">
+                    <div class="flex justify-between items-start mb-6">
+                        <div class="bg-white p-4 border-2 border-primary">
+                            <span class="material-symbols-outlined text-primary text-4xl"
+                                data-icon="javascript">javascript</span>
+                        </div>
+                        <span class="font-headline font-bold text-primary opacity-30 text-6xl">03</span>
+                    </div>
+                    <h3 class="font-headline text-3xl font-black mb-4">JS: The Brain</h3>
+                    <p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                        Add logic, interactivity, and dynamic behavior to your creations. The ultimate power-up for any
+                        web developer.
+                    </p>
+                    <button
+                        class="bg-primary text-on-primary font-headline font-bold px-6 py-2 border-2 border-on-primary-fixed">DEPLOY
+                        LOGIC</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works Guide -->
+    <section class="py-24 bg-surface relative">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <h2 class="font-headline text-center text-4xl md:text-5xl font-black mb-20 uppercase tracking-tighter">The
+                Learning Loop</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+                <!-- Connector Line (Hidden on mobile) -->
+                <div
+                    class="hidden md:block absolute top-1/3 left-0 w-full h-1 bg-outline-variant border-t-4 border-dotted border-outline opacity-20 z-0">
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-surface-container-lowest border-4 border-outline flex items-center justify-center mb-8 rotate-3 hover:rotate-0 transition-transform pixel-shadow">
+                        <span class="material-symbols-outlined text-primary text-5xl"
+                            data-icon="menu_book">menu_book</span>
+                    </div>
+                    <h4 class="font-headline text-2xl font-black mb-4">1. Absorb</h4>
+                    <p class="text-on-surface-variant">Bite-sized visual lessons that explain complex concepts through
+                        simple metaphors.</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-surface-container-lowest border-4 border-outline flex items-center justify-center mb-8 -rotate-3 hover:rotate-0 transition-transform pixel-shadow">
+                        <span class="material-symbols-outlined text-secondary text-5xl"
+                            data-icon="terminal">terminal</span>
+                    </div>
+                    <h4 class="font-headline text-2xl font-black mb-4">2. Tinker</h4>
+                    <p class="text-on-surface-variant">Practice in our "Sandbox" environment with real-time feedback and
+                        pixel-art rewards.</p>
+                </div>
+                <div class="relative z-10 flex flex-col items-center text-center">
+                    <div
+                        class="w-24 h-24 bg-surface-container-lowest border-4 border-outline flex items-center justify-center mb-8 rotate-6 hover:rotate-0 transition-transform pixel-shadow">
+                        <span class="material-symbols-outlined text-tertiary text-5xl"
+                            data-icon="rocket_launch">rocket_launch</span>
+                    </div>
+                    <h4 class="font-headline text-2xl font-black mb-4">3. Deploy</h4>
+                    <p class="text-on-surface-variant">Build actual projects for your portfolio and share them with the
+                        global community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Final CTA -->
+    <section class="py-24 bg-primary text-on-primary">
+        <div
+            class="max-w-[1200px] mx-auto px-6 border-8 border-on-primary-fixed bg-primary p-12 md:p-20 text-center relative overflow-hidden">
+            <!-- Background pixel motifs -->
+            <div class="absolute top-0 right-0 p-4 opacity-20">
+                <span class="material-symbols-outlined text-[120px]" data-icon="grid_view">grid_view</span>
+            </div>
+            <h2 class="font-headline text-4xl md:text-6xl font-black mb-8 relative z-10">Ready to start your first
+                level?</h2>
+            <p class="text-xl md:text-2xl mb-12 opacity-90 max-w-2xl mx-auto relative z-10">
+                Join 50,000+ new developers who are building the future, one pixel at a time. No credit card required to
+                start.
+            </p>
+            <div class="flex flex-col md:flex-row gap-6 justify-center items-center relative z-10">
+                <a href="./map.html"
+                    class="w-full md:w-auto bg-primary-container text-on-primary-container font-headline text-2xl font-black uppercase px-12 py-6 border-4 border-on-primary-fixed pixel-shadow-hover pixel-shadow-active">
+                    Begin Your Journey
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Component -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponents() {
+            const inject = async (id, url) => {
+                try {
+                    const res = await fetch(url);
+                    if (!res.ok) throw new Error(`无法找到文件: ${url}`);
+                    const html = await res.text();
+                    const target = document.getElementById(id);
+                    if (target) {
+                        target.innerHTML = html;
+                    }
+                } catch (err) {
+                    console.error("加载组件失败:", err);
+                }
+            };
+
+            // 1. 同时注入导航栏和页脚（必须加 ../ 因为 components 在 pages 文件夹外）
+            await Promise.all([
+                inject('nav-placeholder', '../components/nav.html'),
+                inject('footer-placeholder', '../components/footer.html')
+            ]);
+
+            // 2. 注入完成后，执行多语言翻译逻辑
+            if (typeof updateLanguage === 'function') {
+                const savedLang = localStorage.getItem('selectedLang') || 'en';
+                updateLanguage(savedLang);
+            }
+        }
+
+        // 页面加载完成后启动
+        window.addEventListener('load', async () => {
+            // 在最开始位置调用加载组件
+            await loadComponents();
+
+            // beginning.html 特有的初始化：如果是点击进入的，确保没有被 overflow-hidden 锁死
+            // 如果 splash 已经隐藏，恢复滚动
+            if (document.getElementById('splash')?.style.display === 'none') {
+                document.body.classList.remove('overflow-hidden');
+            }
+        });
+
+        // 扉页动画函数（保持不变）
+        function startTransition() {
+            document.body.classList.add('active-site');
+            setTimeout(() => {
+                const splash = document.getElementById('splash');
+                if (splash) splash.style.display = 'none';
+                document.body.classList.remove('overflow-hidden');
+            }, 1000);
+        }
+    </script>
+
+</body>
+
+</html>

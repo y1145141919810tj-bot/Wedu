@@ -1,0 +1,354 @@
+<!-- Design System -->
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600&family=Space+Grotesk:wght@500;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#e4f5ff",
+                        "on-background": "#293032",
+                        "surface-container-highest": "#d4dfe2",
+                        "primary": "#00684f",
+                        "background": "#f1f8fa",
+                        "inverse-on-surface": "#979ea0",
+                        "outline-variant": "#a7aeb1",
+                        "error-dim": "#9f0519",
+                        "outline": "#71787a",
+                        "primary-dim": "#005b45",
+                        "error-container": "#fb5151",
+                        "on-primary-fixed": "#004533",
+                        "surface-container-lowest": "#ffffff",
+                        "primary-fixed": "#89f0cb",
+                        "on-tertiary-fixed-variant": "#2b5e71",
+                        "surface": "#f1f8fa",
+                        "secondary": "#635d15",
+                        "tertiary-fixed": "#b2e4fb",
+                        "on-surface-variant": "#565d5f",
+                        "inverse-primary": "#98ffd9",
+                        "on-secondary-container": "#59530a",
+                        "surface-tint": "#00684f",
+                        "surface-variant": "#d4dfe2",
+                        "surface-container-high": "#dae4e7",
+                        "secondary-fixed": "#efe58f",
+                        "on-primary": "#c6ffe7",
+                        "tertiary-dim": "#215669",
+                        "on-error": "#ffefee",
+                        "on-primary-container": "#005a44",
+                        "secondary-container": "#efe58f",
+                        "surface-bright": "#f1f8fa",
+                        "tertiary-container": "#b2e4fb",
+                        "on-error-container": "#570008",
+                        "tertiary": "#2f6275",
+                        "on-secondary-fixed-variant": "#635d15",
+                        "on-secondary": "#fff5a0",
+                        "primary-container": "#89f0cb",
+                        "error": "#b31b25",
+                        "surface-container-low": "#eaf2f5",
+                        "on-secondary-fixed": "#464000",
+                        "secondary-dim": "#575107",
+                        "surface-container": "#e1eaec",
+                        "primary-fixed-dim": "#7be2bd",
+                        "inverse-surface": "#080f11",
+                        "on-surface": "#293032",
+                        "surface-dim": "#cbd6da",
+                        "on-primary-fixed-variant": "#00644c",
+                        "on-tertiary-fixed": "#014154",
+                        "tertiary-fixed-dim": "#a4d6ed",
+                        "secondary-fixed-dim": "#e0d782",
+                        "on-tertiary-container": "#1f5467"
+                    },
+                    fontFamily: {
+                        "headline": ["Space Grotesk"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: { "DEFAULT": "0px", "lg": "0px", "xl": "0px", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+    <style>
+        .pixel-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(41, 48, 50, 0.2);
+        }
+
+        .pixel-shadow-hover:hover {
+            box-shadow: 6px 6px 0px 0px rgba(41, 48, 50, 0.3);
+            transform: translate(-2px, -2px);
+        }
+
+        .pixel-shadow-active:active {
+            box-shadow: 2px 2px 0px 0px rgba(41, 48, 50, 0.2);
+            transform: translate(2px, 2px);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #eaf2f5;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #00684f;
+            border-radius: 0px;
+        }
+    </style>
+    <link rel="icon" href="../assets/images/LOGO2.png" type="image/png">
+    <title>Wedu - 前端学习者的充电站</title>
+    <script src="i18n.js"></script>
+</head>
+
+<body
+    class="bg-background text-on-background font-body selection:bg-primary-container selection:text-on-primary-container">
+
+    <!-- TopNavBar -->
+    <div id="nav-placeholder"></div>
+
+    <main class="max-w-[1000px] mx-auto px-6 py-12 md:py-20">
+        <!-- Breadcrumbs / Meta -->
+        <div class="flex items-center gap-2 mb-8 font-label text-sm font-medium text-tertiary">
+            <span class="material-symbols-outlined text-sm text-on-surface">folder</span>
+            <a href="./map.html" class="text-on-surface-variant hover:text-primary">World Map</a>
+                <span class="material-symbols-outlined mx-2 text-sm" data-icon="chevron_right">chevron_right</span>
+                <span class="text-on-surface hover:text-primary">CSS</span>
+        </div>
+        <!-- Header Section -->
+        <header class="mb-12">
+            <h1 class="font-headline text-5xl md:text-7xl font-bold text-on-background mb-6 tracking-tight leading-tight">CSS
+                FOREST</h1>
+            <p class="text-xl md:text-2xl text-on-surface-variant font-medium leading-relaxed max-w-3xl">
+                Master the layout engine of the modern web. Navigate through the directory to unlock specific flexbox
+                capabilities and earn your <span class="text-secondary font-bold">Layout Architect</span> badge.
+            </p>
+        </header>
+
+        </div>
+        <!-- Directory: Folder Blocks List -->
+        <div class="flex flex-col gap-6">
+            <!-- Module 01 -->
+            <div
+                class="group bg-surface-container-lowest border-3 border-outline p-1 pixel-shadow pixel-shadow-hover transition-all">
+                <div
+                    class="flex flex-col md:flex-row md:items-center bg-surface-container-low p-5 md:p-6 border-2 border-transparent justify-between">
+                    <div class="flex items-center gap-6 flex-grow">
+                        <div
+                            class="w-16 h-16 bg-primary-container flex items-center justify-center border-2 border-primary shrink-0">
+                            <span class="material-symbols-outlined text-primary text-4xl" data-icon="grid_view"
+                                data-weight="fill" style="font-variation-settings: 'FILL' 1;">grid_view</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="font-headline text-2xl font-bold text-on-surface leading-none">01. Box Model
+                            </h3>
+                            <p class="text-on-surface-variant mt-2 max-w-md font-medium">The foundation. Master display:
+                                flex and the primary axis mechanics.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:ml-6 flex items-center gap-6">
+                        <div class="hidden lg:flex flex-col text-right">
+                            <span class="text-xs font-bold uppercase text-outline">COMPLETION</span>
+                            <div class="flex gap-1 mt-1">
+                                <div class="w-3 h-3 bg-primary"></div>
+                                <div class="w-3 h-3 bg-primary"></div>
+                                <div class="w-3 h-3 bg-primary"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                            </div>
+                        </div>
+                        <a href="./Box Modle.html"
+                            class="w-full md:w-auto px-8 py-3 bg-primary text-on-primary font-headline font-bold uppercase tracking-wider border-2 border-on-primary-fixed hover:-translate-x-1 hover:-translate-y-1 transition-all btn-pixel-active pixel-shadow">
+                            Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Module 02 -->
+            <div
+                class="group bg-surface-container-lowest border-3 border-outline p-1 pixel-shadow pixel-shadow-hover transition-all">
+                <div
+                    class="flex flex-col md:flex-row md:items-center bg-surface-container-low p-5 md:p-6 border-2 border-transparent">
+                    <div class="flex items-center gap-6 flex-grow">
+                        <div
+                            class="w-16 h-16 bg-tertiary-container flex items-center justify-center border-2 border-tertiary shrink-0">
+                            <span class="material-symbols-outlined text-tertiary text-4xl" data-icon="widgets"
+                                data-weight="fill" style="font-variation-settings: 'FILL' 1;">widgets</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="font-headline text-2xl font-bold text-on-surface leading-none">02. Flexbox Vines
+                            </h3>
+                            <p class="text-on-surface-variant mt-2 max-w-md font-medium">As flexible as a vine in a
+                                forest, mastering the art of perfect alignment in one-dimensional space.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:ml-6 flex items-center gap-6">
+                        <div class="hidden lg:flex flex-col text-right">
+                            <span class="text-xs font-bold uppercase text-outline">COMPLETION</span>
+                            <div class="flex gap-1 mt-1">
+                                <div class="w-3 h-3 bg-primary"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                            </div>
+                        </div>
+                        <a href="./Flexbox Vines.html"
+                            class="w-full md:w-auto px-8 py-3 bg-primary text-on-primary font-headline font-bold uppercase tracking-wider border-2 border-on-primary-fixed hover:-translate-x-1 hover:-translate-y-1 transition-all btn-pixel-active pixel-shadow">
+                            Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Module 03 -->
+            <div
+                class="group bg-surface-container-lowest border-3 border-outline p-1 pixel-shadow pixel-shadow-hover transition-all">
+                <div
+                    class="flex flex-col md:flex-row md:items-center bg-surface-container-low p-5 md:p-6 border-2 border-transparent">
+                    <div class="flex items-center gap-6 flex-grow">
+                        <div
+                            class="w-16 h-16 bg-secondary-container flex items-center justify-center border-2 border-secondary shrink-0">
+                            <span class="material-symbols-outlined text-secondary text-4xl" data-icon="align_center"
+                                data-weight="fill" style="font-variation-settings: 'FILL' 1;">align_center</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <h3 class="font-headline text-2xl font-bold text-on-surface leading-none">03. Grid Ecosystem
+                            </h3>
+                            <p class="text-on-surface-variant mt-2 max-w-md font-medium">Handle complex two-dimensional
+                                layouts and design precise areas like planning a forest trail.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:ml-6 flex items-center gap-6">
+                        <div class="hidden lg:flex flex-col text-right">
+                            <span class="text-xs font-bold uppercase text-outline">COMPLETION</span>
+                            <div class="flex gap-1 mt-1">
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                                <div class="w-3 h-3 bg-surface-container-highest"></div>
+                            </div>
+                        </div>
+                        <a href="./Grid Ecosystem.html"
+                            class="w-full md:w-auto px-8 py-3 bg-primary text-on-primary font-headline font-bold uppercase tracking-wider border-2 border-on-primary-fixed hover:-translate-x-1 hover:-translate-y-1 transition-all btn-pixel-active pixel-shadow">
+                            Open
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Module 04 (Locked State) -->
+            <div class="group bg-surface-container opacity-60 border-3 border-outline-variant p-1 grayscale">
+                <div
+                    class="flex flex-col md:flex-row md:items-center bg-surface p-5 md:p-6 border-2 border-transparent">
+                    <div class="flex items-center gap-6 flex-grow">
+                        <div
+                            class="w-16 h-16 bg-surface-container-highest flex items-center justify-center border-2 border-outline-variant shrink-0">
+                            <span class="material-symbols-outlined text-outline text-4xl" data-icon="lock">lock</span>
+                        </div>
+                        <div class="flex flex-col">
+                            <span
+                                class="font-headline text-xs font-bold text-outline uppercase tracking-widest mb-1">ADVANCED</span>
+                            <h3 class="font-headline text-2xl font-bold text-on-surface-variant leading-none">04. Visual
+                                Order</h3>
+                            <p class="text-outline mt-2 max-w-md font-medium">Rearranging visual order without touching
+                                the source HTML.</p>
+                        </div>
+                    </div>
+                    <div class="mt-6 md:mt-0 md:ml-6 flex items-center gap-6">
+                        <button
+                            class="w-full md:w-auto px-8 py-3 bg-outline text-on-surface-variant font-headline font-bold uppercase tracking-wider border-2 border-on-surface-variant opacity-50 cursor-not-allowed"
+                            disabled="">
+                            Locked
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Directory Footer Meta -->
+        <div
+            class="mt-12 p-8 bg-tertiary-container border-3 border-tertiary flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-white flex items-center justify-center border-2 border-tertiary">
+                    <span class="material-symbols-outlined text-tertiary" data-icon="folder_zip">folder_zip</span>
+                </div>
+                <div>
+                    <p class="font-headline font-bold text-on-tertiary-container">Directory Summary</p>
+                    <p class="text-sm font-medium text-tertiary">3 Active Modules | 1 Locked Module | 45% Complete</p>
+                </div>
+            </div>
+            <button
+                class="flex items-center gap-2 px-6 py-3 bg-white text-tertiary border-2 border-tertiary font-headline font-bold uppercase hover:-translate-x-1 hover:-translate-y-1 transition-all pixel-shadow btn-pixel-active">
+                <span class="material-symbols-outlined" data-icon="download">download</span>
+                Download Notes
+            </button>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+
+    <script>
+        async function loadComponents() {
+            const inject = async (id, url) => {
+                try {
+                    const res = await fetch(url);
+                    if (!res.ok) throw new Error(`无法找到文件: ${url}`);
+                    const html = await res.text();
+                    const target = document.getElementById(id);
+                    if (target) {
+                        target.innerHTML = html;
+                    }
+                } catch (err) {
+                    console.error("加载组件失败:", err);
+                }
+            };
+
+            // 1. 同时注入导航栏和页脚
+            await Promise.all([
+                inject('nav-placeholder', '../components/nav.html'),
+                inject('footer-placeholder', '../components/footer.html')
+            ]);
+
+            // 2. 注入完成后，执行多语言翻译逻辑
+            // 匹配你 i18n.js 中的函数名 updateLanguage
+            if (typeof updateLanguage === 'function') {
+                const savedLang = localStorage.getItem('selectedLang') || 'en';
+                updateLanguage(savedLang);
+            }
+        }
+
+        // 页面加载完成后启动
+        window.addEventListener('DOMContentLoaded', loadComponents);
+    </script>
+
+    <div class="fixed bottom-4 right-4 z-50 flex gap-2">
+        <button onclick="switchLanguage('zh')"
+            class="p-2 bg-white border-2 border-black font-bold text-xs uppercase hover:bg-primary-container transition-colors">中文</button>
+        <button onclick="switchLanguage('en')"
+            class="p-2 bg-white border-2 border-black font-bold text-xs uppercase hover:bg-primary-container transition-colors">EN</button>
+    </div>
+
+</body>
+
+</html>
